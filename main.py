@@ -8,6 +8,7 @@ import pyttsx3
 from pygame import mixer
 from pygame import error as sounderror
 import csv
+from Application import Application
 
 
 def initialize():
@@ -70,8 +71,9 @@ def readtimetable():
 
 
 def main():
+    app = Application(tk.Tk())
+    app.root.mainloop()
     initialize()
-    readtimetable()
     mainthread = threading.Thread(target=target)
     mainthread.start()
 
