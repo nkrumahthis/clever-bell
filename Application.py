@@ -8,6 +8,10 @@ class Application(tk.Frame):
         self.ui()
 
     def ui(self):
+        self.window()
+        self.treeview()
+
+    def window(self):
         self.root.title("Alma Matter Bell")
         width = 500
         height = 400
@@ -17,3 +21,23 @@ class Application(tk.Frame):
         y = (screen_height/2) - (height/2)
         self.root.geometry("%dx%d+%d+%d" % (width, height, x, y))
         self.root.resizable(0, 0)
+
+    def treeview(self):
+        TableMargin = ttk.Frame(self.root, width=500)
+        TableMargin.pack(side="top")
+        scrollbarx = ttk.Scrollbar(TableMargin, orient="horizontal")
+        scrollbary = ttk.Scrollbar(TableMargin, orient="vertical")
+        tree = ttk.Treeview(TableMargin, columns=("Description", "Time", "Tune"), height=400,
+                            selectmode="extended", yscrollcommand=scrollbary.set, xscrollcommand=scrollbarx.set)
+        scrollbary.config(command=tree.yview)
+        scrollbary.pack(side="right", fill=tk.Y)
+        scrollbarx.config(command=tree.xview)
+        scrollbarx.pack(side="bottom", fill=tk.X)
+        tree.heading('Description', text="Description", anchor=tk.W)
+        tree.heading('Time', text="Time", anchor=tk.W)
+        tree.heading('Tune', text="Alarm Tune", anchor=tk.W)
+        tree.column('#0', stretch="no", minwidth=0, width=0)
+        tree.column('#1', stretch="no", minwidth=0, width=200)
+        tree.column('#2', stretch="no", minwidth=0, width=200)
+        tree.column('#3', stretch="no", minwidth=0, width=300)
+        tree.pack()

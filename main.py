@@ -70,9 +70,13 @@ def readtimetable():
     return timetable
 
 
-def main():
+def loadgui():
     app = Application(tk.Tk())
     app.root.mainloop()
+
+
+def main():
+    loadgui()
     initialize()
     mainthread = threading.Thread(target=target)
     mainthread.start()
