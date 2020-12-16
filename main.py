@@ -22,12 +22,7 @@ def initialize():
 
 
 def target():
-    # alarmtime = "10:35"
     initialize()
-
-    # print(timetable)
-    # alarmargs = ("breakfast time", "10:38", "alarm_tunes\\al1.mp3")
-    # alarmargs = timetable[1]
 
     while True:
         localtime = datetime.now().strftime("%H:%M")
