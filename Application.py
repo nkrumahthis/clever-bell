@@ -27,7 +27,7 @@ class Application(tk.Frame):
         TableMargin.pack(side="top")
         scrollbarx = ttk.Scrollbar(TableMargin, orient="horizontal")
         scrollbary = ttk.Scrollbar(TableMargin, orient="vertical")
-        tree = ttk.Treeview(TableMargin, columns=("Description", "Time", "Tune"), height=400,
+        tree = ttk.Treeview(TableMargin, columns=("Description", "Time", "Days", "Tune"), height=400,
                             selectmode="extended", yscrollcommand=scrollbary.set, xscrollcommand=scrollbarx.set)
         scrollbary.config(command=tree.yview)
         scrollbary.pack(side="right", fill=tk.Y)
@@ -35,9 +35,20 @@ class Application(tk.Frame):
         scrollbarx.pack(side="bottom", fill=tk.X)
         tree.heading('Description', text="Description", anchor=tk.W)
         tree.heading('Time', text="Time", anchor=tk.W)
+        tree.heading('Days', text="Days", anchor=tk.W)
         tree.heading('Tune', text="Alarm Tune", anchor=tk.W)
         tree.column('#0', stretch="no", minwidth=0, width=0)
         tree.column('#1', stretch="no", minwidth=0, width=200)
         tree.column('#2', stretch="no", minwidth=0, width=200)
         tree.column('#3', stretch="no", minwidth=0, width=300)
         tree.pack()
+        self.tree = tree
+
+    def filltreeview(self, timetable):
+        for row in timetable:
+            self.tree.insert('', 'end', text='hey',
+                             value=row)
+
+    def cleartreeview(self):
+        print('clear tree')
+        print('tree clear')

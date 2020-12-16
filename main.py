@@ -54,6 +54,7 @@ def soundalarm(description, alarmtime, days, sound):
         mixer.music.load("alarm_tunes/" + sound.strip())
         mixer.music.play()
         time.sleep(60)
+
     except sounderror as errormsg:
         print(errormsg)
         engine.say(errormsg)
@@ -72,14 +73,15 @@ def readtimetable():
 
 def loadgui():
     app = Application(tk.Tk())
+    app.filltreeview(readtimetable())
     app.root.mainloop()
 
 
 def main():
-    loadgui()
     initialize()
     mainthread = threading.Thread(target=target)
     mainthread.start()
+    loadgui()
 
 
 if __name__ == "__main__":
