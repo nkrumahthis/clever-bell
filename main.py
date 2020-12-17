@@ -1,6 +1,5 @@
 import os
 import threading
-import tkinter as tk
 import time
 from datetime import datetime
 from playsound import playsound
@@ -71,17 +70,10 @@ def readtimetable():
     return timetable
 
 
-def loadgui():
-    app = Application(tk.Tk())
-    app.filltreeview(readtimetable())
-    app.root.mainloop()
-
-
 def main():
     initialize()
     mainthread = threading.Thread(target=target)
     mainthread.start()
-    loadgui()
 
 
 if __name__ == "__main__":

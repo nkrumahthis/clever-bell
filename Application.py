@@ -1,5 +1,6 @@
 import tkinter as tk
 import tkinter.ttk as ttk
+import csv
 
 
 class Application(tk.Frame):
@@ -10,6 +11,7 @@ class Application(tk.Frame):
     def ui(self):
         self.window()
         self.treeview()
+        self.filltreeview()
 
     def window(self):
         self.root.title("Alma Matter Bell")
@@ -44,7 +46,13 @@ class Application(tk.Frame):
         tree.pack()
         self.tree = tree
 
-    def filltreeview(self, timetable):
+    def filltreeview(self):
+        timetable = []
+        with open('timetable.csv', 'rt') as csvfile:
+            reader = csv.reader(csvfile, delimiter=',', quotechar='|')
+            for row in reader:
+                timetable.append(row)
+
         for row in timetable:
             self.tree.insert('', 'end', text='hey',
                              value=row)
@@ -52,3 +60,8 @@ class Application(tk.Frame):
     def cleartreeview(self):
         print('clear tree')
         print('tree clear')
+
+
+if __name__ == "__main__":
+    app = Application(tk.Tk())
+    app.root.mainloop()
