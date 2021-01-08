@@ -1,4 +1,4 @@
-![logo](extras/clever-bell.png){:width="100px" height="100px"}
+<img src="extras/clever-bell.png" alt="logo" width="100px" height="100px">
 
 # Clever Bell
 
