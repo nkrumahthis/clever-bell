@@ -2,18 +2,15 @@ import os
 import threading
 import time
 from datetime import datetime
-from playsound import playsound
 import pyttsx3
 from pygame import mixer
 from pygame import error as sounderror
 import csv
-from Application import Application
 
 
 def initialize():
     # get current working directory
-    path = os.getcwd()
-    tunes_path = path + "\\alarm_tunes"
+    tunes_path = "/home/pi/Desktop/alarm_tunes"
 
     # if no directory is present, create one
     if not os.path.isdir(tunes_path):
@@ -25,32 +22,42 @@ def target():
     initialize()
 
     while True:
+        os.system('clear')
+        now = datetime.now()
+        print("Clever Bell Running")
+        print(now.strftime("%A %d-%m-%Y %H:%M "))
         localtime = datetime.now().strftime("%H:%M")
         dayofweek = datetime.now().strftime("%A")
         dateoftoday = datetime.now().strftime("%d-%m-%Y")
         timetable = readtimetable()
 
+        print("\n-----------\n")
+        print("Expected alarms today\n")
+
         for index in range(1, len(timetable)):
             row = timetable[index]
-            print("checking if today is", row[2])
             # check if today is among
-            if(row[2].capitalize() == "Everyday" or row[2].capitalize() == dayofweek or row[2] == dateoftoday or row[2] == ''):
-                print("today dey mong ", row)
-                if(localtime == row[1].strip()):
-                    soundalarm(*row)
+            try:
+                if(row[2].capitalize() == "Everyday" or row[2].capitalize() == dayofweek or row[2] == dateoftoday or row[2] == ''):
+                    print(row)
+                    if(localtime == row[1].strip()):
+                        soundalarm(*row)
+            except IndexError:
+                print("error in timetable.csv line", index)
 
-        time.sleep(5)
+        time.sleep(10)
 
 
 def soundalarm(description, alarmtime, days, sound):
     engine = pyttsx3.init()
-    engine.say("The time is " + alarmtime)
-    engine.say("Time for " + description)
-    engine.runAndWait()
 
     try:
+        engine.say("The time is " + alarmtime)
+        engine.say("Time for " + description)
+        engine.runAndWait()
+
         mixer.init()
-        mixer.music.load("alarm_tunes/" + sound.strip())
+        mixer.music.load("/home/pi/Desktop/alarm_tunes/" + sound.strip())
         mixer.music.play()
         time.sleep(60)
 
@@ -62,7 +69,7 @@ def soundalarm(description, alarmtime, days, sound):
 
 def readtimetable():
     timetable = []
-    with open('timetable.csv', 'rt') as csvfile:
+    with open('/home/pi/Desktop/timetable.csv', 'rt') as csvfile:
         reader = csv.reader(csvfile, delimiter=',', quotechar='|')
         for row in reader:
             timetable.append(row)
