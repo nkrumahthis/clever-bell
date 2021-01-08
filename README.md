@@ -1,4 +1,4 @@
-![logo](extras/clever-bell.png =100x100)
+![logo](extras/clever-bell.png){:width="100px" height="100px"}
 
 # Clever Bell
 
