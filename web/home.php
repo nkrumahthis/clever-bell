@@ -28,6 +28,7 @@
                     <li>Items1</li>
                     <li>Items2</li>
                     <li>Items3</li>
+                    <?php Jingle::show(); ?>
                 </ul>
                 <button>Upload Sound</button>
             </div>
@@ -36,7 +37,7 @@
                 <div class="my-3">
                     <button>New</button>
                 </div>
-                <?php Schedule::make_table() ?>
+                <?php Schedule::make_table(); ?>
                 <div class="my-3">
                     <button>Edit</button>
                     <button>Delete</button>
