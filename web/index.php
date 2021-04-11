@@ -1,55 +1,32 @@
-<!DOCTYPE html>
-
 <?php
-include 'schedule.php'
+include('Route.php');
 
-?>
+// Add base route(startpage)
+Route::add('/', function () {
+    echo 'Welcome :-)';
+});
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles.css">
-    <title>CleverBell Editor</title>
-</head>
+Route::add('/schedule', function () {
+    echo 'Welcome schedule';
+});
 
-<body>
-    <div class="container">
-        <div class="row banner mx-2">
-            <div class="col">
-                <h1>Clever Bell</h1>
-            </div>
-        </div>
-        <div class="row m-3">
-            <div class="col-md-4">
-                <h3>Sounds</h3>
-                <ul>
-                    <li>Items1</li>
-                    <li>Items2</li>
-                    <li>Items3</li>
-                </ul>
-                <button>Upload Sound</button>
-            </div>
-            <div class="col-md-8">
-                <h3>Schedules</h3>
-                <div class="my-3">
-                    <button>New</button>
-                </div>
-                <?php make_table() ?>
-                <div class="my-3">
-                    <button>Edit</button>
-                    <button>Delete</button>
-                </div>
+// Post route example
+Route::add('/contact-form', function () {
+    echo '<form method="post"><input type="text" name="test" /><input type="submit" value="send" /></form>';
+}, 'get');
 
-            </div>
-        </div>
-    </div>
+// Post route example
+Route::add('/contact-form', function () {
+    echo 'Hey! The form has been sent:<br/>';
+    print_r($_POST);
+}, 'post');
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-</body>
+Route::add('/foo/([0-9]*)/([0-9]*)', function ($var1, $var2) {
+    echo 'foo ' . $var1 . ' ' . $var2;
+});
 
-</html>
+Route::add('/', function () {
+    echo 'Welcome :-)';
+});
+
+Route::run('/');

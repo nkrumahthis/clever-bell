@@ -33,6 +33,8 @@ class Route
 
         $route_match_found = false;
 
+
+        $x = 0;
         foreach (self::$routes as $route) {
 
             // If the method matches check the path
@@ -47,6 +49,42 @@ class Route
 
             // Add 'find string end' automatically
             $route['expression'] = $route['expression'] . '$';
+
+            // Check path match
+            if (preg_match('#' . $route['expression'] . '#', $path, $matches)) {
+                $paths_match_found = true;
+
+                // Check method match
+                if (strtolower($method) == strtolower($route['method'])) {
+                    array_shift($matches); // always remove the first element. this the whole string
+                    if ($basepath != '' && $basepath != '/') {
+                        array_shift($matches); // Remove basepath
+                    }
+
+                    call_user_func_array($route['function'], $matches);
+
+                    $route_match_found = true;
+
+                    // Do not check other routes
+                    break;
+                }
+
+                // no matching route was found
+                if (!$route_match_found) {
+                    // But a matching path exists
+                    if ($path_match_found) {
+                        header("HTTP/1.0 405 Method Not Allowed");
+                        if (self::$methodNotAllowed) {
+                            call_user_func_array(self::$methodNotAllowed, array($path, $method));
+                        } else {
+                            header("HTTP/1.0 404 Not Found");
+                            if (self::$pathNotFound) {
+                                call_user_func_array(self::$pathNotFound, array($path));
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 
