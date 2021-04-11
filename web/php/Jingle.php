@@ -17,7 +17,19 @@ class Jingle
         return $jingles;
     }
 
+
     public static function upload()
     {
+        echo json_encode($_FILES);
+        $audiofile = $_FILES["jingle"];
+        $filesize = $audiofile["size"];
+        if ($filesize < 10485760) {
+            $status = move_uploaded_file($audiofile["tmp_name"], self::$path . $audiofile["name"]);
+            if (!$status) {
+                echo "upload error";
+            }
+        } else {
+            echo "file too big";
+        }
     }
 }

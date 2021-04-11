@@ -36,6 +36,11 @@
                     ?>
                 </ul>
 
+                <form action="jingle" enctype="multipart/form-data" method="post">
+                    <input type="file" name="jingle" accept="audio/*">
+                    <input type="submit" name="Submit" value="Submit">
+                </form>
+
                 <button>Upload Sound</button>
             </div>
             <div class="col-md-8">

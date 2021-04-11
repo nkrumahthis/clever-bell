@@ -31,8 +31,8 @@ Route::add('/jingle', function () {
 Route::add(
     '/jingle',
     function () {
-        echo 'Hey! The form has been sent:<br/>';
-        print_r($_POST);
+        echo 'Jingle uploaded successfully<br/><br/><a href="/"><- Back</a>';
+        Jingle::upload();
     },
     'post'
 );
