@@ -1,19 +1,12 @@
 <?php
 
-function make_table()
+class Schedule
 {
-    $path = "timetable.csv";
-    $schedules = [];
+    public static function make_table()
+    {
+        $schedules = Csv::readAllSchedules();
 
-    $handle = fopen($path, "r") or die("error opening file");
-
-    while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
-        array_push($schedules, $data);
-    }
-
-    fclose($handle);
-
-    echo "
+        echo "
         <table class=\"w-100\">
             <tbody>
                 <tr>
@@ -32,8 +25,8 @@ function make_table()
                 </tr>
     ";
 
-    foreach ($schedules as $schedule) {
-        echo "
+        foreach ($schedules as $schedule) {
+            echo "
             <tr>
                 <td>$schedule[0]</td>
                 <td>$schedule[1]</td>
@@ -42,9 +35,10 @@ function make_table()
 
             </tr>
         ";
-    }
-    echo "
+        }
+        echo "
         </tbody>
         </table>
     ";
+    }
 }

@@ -1,9 +1,17 @@
 <?php
-include('Route.php');
+include('php/Csv.php');
+include('php/Jingle.php');
+include('php/Route.php');
+include('php/Schedule.php');
+
 
 // Add base route(startpage)
 Route::add('/', function () {
-    echo 'Welcome :-)';
+    include('home.php');
+});
+
+Route::add('/main', function () {
+    include('main.php');
 });
 
 Route::add('/schedule', function () {
@@ -11,15 +19,23 @@ Route::add('/schedule', function () {
 });
 
 // Post route example
-Route::add('/contact-form', function () {
+Route::add('/schedule', function () {
     echo '<form method="post"><input type="text" name="test" /><input type="submit" value="send" /></form>';
 }, 'get');
 
-// Post route example
-Route::add('/contact-form', function () {
-    echo 'Hey! The form has been sent:<br/>';
-    print_r($_POST);
-}, 'post');
+// jingle
+Route::add('/jingle', function () {
+    echo 'list jingles';
+}, 'get');
+
+Route::add(
+    '/jingle',
+    function () {
+        echo 'Hey! The form has been sent:<br/>';
+        print_r($_POST);
+    },
+    'post'
+);
 
 Route::add('/foo/([0-9]*)/([0-9]*)', function ($var1, $var2) {
     echo 'foo ' . $var1 . ' ' . $var2;

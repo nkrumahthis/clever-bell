@@ -33,8 +33,6 @@ class Route
 
         $route_match_found = false;
 
-
-        $x = 0;
         foreach (self::$routes as $route) {
 
             // If the method matches check the path
