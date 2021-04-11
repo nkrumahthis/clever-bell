@@ -4,7 +4,7 @@ class Jingle
 {
     private static $path = "jingles/";
 
-    public static function show()
+    public static function getAll()
     {
         $jingles = [];
 
@@ -14,8 +14,10 @@ class Jingle
                 array_push($jingles, $f);
             }
         }
-        var_dump($jingles);
-        var_dump($files);
         return $jingles;
+    }
+
+    public static function upload()
+    {
     }
 }

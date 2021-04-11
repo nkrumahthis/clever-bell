@@ -25,11 +25,17 @@
             <div class="col-md-4">
                 <h3>Sounds</h3>
                 <ul>
-                    <li>Items1</li>
-                    <li>Items2</li>
-                    <li>Items3</li>
-                    <?php Jingle::show(); ?>
+                    <?php
+                    $jingles = Jingle::getAll();
+                    foreach ($jingles as $jingle) {
+                        echo "<li>" . $jingle . "</li>";
+                    }
+                    if (sizeof($jingles) == 0) {
+                        echo "no sounds yet.";
+                    }
+                    ?>
                 </ul>
+
                 <button>Upload Sound</button>
             </div>
             <div class="col-md-8">
