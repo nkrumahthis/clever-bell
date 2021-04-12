@@ -46,7 +46,31 @@
             <div class="col-md-8">
                 <h3>Schedules</h3>
                 <div class="my-3">
-                    <button>New</button>
+                    <form action="schedule" method="post">
+                        <input type="text" name="description" placeholder="description" />
+                        <input type="text" name="time" paceholder="12:59" />
+                        <select name="days" id="days">
+                            <option value="Everyday">Everyday</option>
+                            <option value="Weekdays">Weekdays</option>
+                            <option value="Monday">Monday</option>
+                            <option value="Tuesday">Tuesday</option>
+                            <option value="Wednesday">Wednesday</option>
+                            <option value="Thursday">Thursday</option>
+                            <option value="Friday">Friday</option>
+                            <option value="Saturday">Saturday</option>
+                            <option value="Sunday">Sunday</option>
+                            <option value="Weekends">Weekends</option>
+                        </select>
+                        <select name="jingle" id="jingle">
+                            <?php
+                            foreach ($jingles as $jingle) {
+                                echo "<option value=\"" . $jingle . "\">" . $jingle . "</option>\n";
+                            }
+                            ?>
+                        </select>
+                        <input type="submit" name="Submit" value="Submit">
+                    </form>
+                    <!-- <button>New</button> -->
                 </div>
                 <?php Schedule::make_table(); ?>
                 <div class="my-3">

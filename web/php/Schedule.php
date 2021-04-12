@@ -2,6 +2,11 @@
 
 class Schedule
 {
+    public static function add($schedule)
+    {
+        Csv::addSchedule($schedule);
+    }
+
     public static function make_table()
     {
         $schedules = Csv::readAllSchedules();

@@ -16,12 +16,14 @@ Route::add('/main', function () {
 
 Route::add('/schedule', function () {
     echo 'Welcome schedule';
-});
+}, 'get');
 
 // Post route example
 Route::add('/schedule', function () {
-    echo '<form method="post"><input type="text" name="test" /><input type="submit" value="send" /></form>';
-}, 'get');
+    $schedule = array($_POST["description"], $_POST["time"], $_POST["days"], $_POST["jingle"]);
+    Schedule::add($schedule);
+    echo 'Schedule added successfully<br/><br/><a href="/"><- Back</a>';
+}, 'post');
 
 // jingle
 Route::add('/jingle', function () {
@@ -31,8 +33,8 @@ Route::add('/jingle', function () {
 Route::add(
     '/jingle',
     function () {
-        echo 'Jingle uploaded successfully<br/><br/><a href="/"><- Back</a>';
         Jingle::upload();
+        echo 'Jingle uploaded successfully<br/><br/><a href="/"><- Back</a>';
     },
     'post'
 );
