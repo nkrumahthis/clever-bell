@@ -27,4 +27,10 @@ class Csv
 
         return $schedules;
     }
+
+    public static function getSchedule($index)
+    {
+        $schedules = self::readAllSchedules();
+        return $schedules[$index];
+    }
 }

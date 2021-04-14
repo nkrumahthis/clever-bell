@@ -18,6 +18,10 @@ Route::add('/schedule', function () {
     echo 'Welcome schedule';
 }, 'get');
 
+Route::add('/schedule/([0-9]*)', function ($index) {
+    Schedule::read($index);
+}, 'get');
+
 // Post route example
 Route::add('/schedule', function () {
     $schedule = array($_POST["description"], $_POST["time"], $_POST["days"], $_POST["jingle"]);

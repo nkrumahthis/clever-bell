@@ -7,6 +7,29 @@ class Schedule
         Csv::addSchedule($schedule);
     }
 
+    public static function create()
+    {
+        include('views/schedule/create.php');
+    }
+
+    public static function read($index)
+    {
+        $schedule = Csv::getSchedule($index);
+        include('views/schedule/read.php');
+    }
+
+    public static function update($index)
+    {
+        $schedule = Csv::getSchedule($index);
+        include('views/schedule/update.php');
+    }
+
+    public static function delete($index)
+    {
+        $schedule = Csv::getSchedule($index);
+        include('views/schedule/delete.php');
+    }
+
     public static function make_table()
     {
         $schedules = Csv::readAllSchedules();
@@ -27,9 +50,12 @@ class Schedule
                     <th>
                         Sound
                     </th>
+                    <th>
+                        Action
+                    </th>
                 </tr>
     ";
-
+        $index = 0;
         foreach ($schedules as $schedule) {
             echo "
             <tr>
@@ -37,9 +63,11 @@ class Schedule
                 <td>$schedule[1]</td>
                 <td>$schedule[2]</td>
                 <td>$schedule[3]</td>
+                <td><span><a href=\"/schedule/$index\">View</a></span> <span><a href=\"#\">Edit</a></span> <span><a href=\"#\">Delete</a></span></td>
 
             </tr>
         ";
+            $index++;
         }
         echo "
         </tbody>
