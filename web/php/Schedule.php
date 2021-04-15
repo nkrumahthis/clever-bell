@@ -7,6 +7,11 @@ class Schedule
         Csv::addSchedule($schedule);
     }
 
+    public static function edit($index, $schedule)
+    {
+        Csv::editSchedule($index, $schedule);
+    }
+
     public static function create()
     {
         include('views/schedule/create.php');
@@ -63,7 +68,7 @@ class Schedule
                 <td>$schedule[1]</td>
                 <td>$schedule[2]</td>
                 <td>$schedule[3]</td>
-                <td><span><a href=\"/schedule/$index\">View</a></span> <span><a href=\"#\">Edit</a></span> <span><a href=\"#\">Delete</a></span></td>
+                <td><span><a href=\"/schedule/view/$index\">View</a></span> <span><a href=\"/schedule/edit/$index\">Edit</a></span> <span><a href=\"/schedule/delete/$index\">Delete</a></span></td>
 
             </tr>
         ";

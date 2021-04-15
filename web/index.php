@@ -18,9 +18,36 @@ Route::add('/schedule', function () {
     echo 'Welcome schedule';
 }, 'get');
 
-Route::add('/schedule/([0-9]*)', function ($index) {
+Route::add('/schedule/view/([0-9]*)', function ($index) {
     Schedule::read($index);
 }, 'get');
+
+Route::add(
+    '/schedule/edit/([0-9]*)',
+    function ($index) {
+        #edit
+        Schedule::update($index);
+    },
+    'get'
+);
+
+Route::add(
+    '/schedule/update/([0-9]*)',
+    function ($index) {
+        $schedule = array($_POST["description"], $_POST["time"], $_POST["days"], $_POST["jingle"]);
+        Schedule::edit($index, $schedule);
+        echo 'Schedule editted successfully<br/><br/><a href="/"><- Back</a>';
+    },
+    'post'
+);
+
+Route::add(
+    '/schedule/delete/([0-9]*)',
+    function ($index) {
+        # delete
+    },
+    'get'
+);
 
 // Post route example
 Route::add('/schedule', function () {

@@ -12,6 +12,24 @@ class Csv
         fclose($handle);
     }
 
+    public static function writeSchedules($schedules)
+    {
+        $handle = fopen(self::$path, "w") or die("error opening file");
+        $input = "";
+        foreach ($schedules as $schedule) {
+            $input .= $schedule[0] . "," . $schedule[1] . "," . $schedule[2] . "," . $schedule[3] . "\n";
+        }
+        fwrite($handle, $input);
+        fclose($handle);
+    }
+
+    public static function editSchedule($index, $schedule)
+    {
+        $schedules = self::readAllSchedules();
+        $schedules[$index] = $schedule;
+        self::writeSchedules($schedules);
+    }
+
     public static function readAllSchedules()
     {
 
