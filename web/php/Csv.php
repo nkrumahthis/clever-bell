@@ -37,6 +37,13 @@ class Csv
         self::writeSchedules($schedules);
     }
 
+    public static function deleteSchedule($index)
+    {
+        $schedules = self::readAllSchedules();
+        unset($schedules[$index]);
+        self::writeSchedules($schedules);
+    }
+
     public static function readAllSchedules()
     {
 

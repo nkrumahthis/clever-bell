@@ -6,9 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/fontawesome.css">
-    <script src="js/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="/js/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
     <title>CleverBell Editor : Create Schedule</title>
 </head>
 
@@ -19,7 +18,7 @@
                 <div class="col-md-12">
                     <h2 class="mt-5">Create Schedule</h2>
                     <p>Please edit the input values and submit to create the schedule.</p>
-                    <form action="schedule" method="post">
+                    <form action="/schedule/create" method="post">
                         <div class="form-group">
                             <label>Description</label>
                             <input type="text" name="description" class="form-control">
@@ -52,7 +51,7 @@
                                 $i = 0;
                                 $selected = "selected = \"selected\"";
                                 foreach ($jingles as $jingle) {
-                                    echo "<option value=\"$jingle\"" . (($jingles[$i] == $schedule[3]) ? $selected : '') . ">$jingle</option>";
+                                    echo "<option value=\"$jingle\">$jingle</option>";
                                     $i++;
                                 }
                                 ?>

@@ -15,6 +15,15 @@ Route::add('/schedule/create', function () {
     View::scheduleCreate();
 }, 'get');
 
+Route::add(
+    '/schedule/create',
+    function () {
+        Schedule::add();
+        echo 'Schedule added successfully<br/><br/><a href="/"><- Back</a>';
+    },
+    'post'
+);
+
 Route::add('/schedule/view/([0-9]*)', function ($index) {
     View::scheduleRead($index);
 }, 'get');
@@ -41,6 +50,8 @@ Route::add(
     '/schedule/delete/([0-9]*)',
     function ($index) {
         # delete
+        Schedule::delete($index);
+        echo 'Schedule deleted successfully<br/><br/><a href="/"><- Back</a>';
     },
     'get'
 );
@@ -50,6 +61,8 @@ Route::add('/schedule', function () {
     Schedule::add();
     echo 'Schedule added successfully<br/><br/><a href="/"><- Back</a>';
 }, 'post');
+
+
 
 // jingle
 Route::add('/jingle', function () {
