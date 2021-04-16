@@ -74,7 +74,51 @@
                     </form>
                     <!-- <button>New</button> -->
                 </div>
-                <?php Schedule::make_table(); ?>
+                <?php
+
+                $schedules = Csv::readAllSchedules();
+
+                echo "
+        <table class=\"w-100\">
+            <tbody>
+                <tr>
+                    <th>
+                        Description
+                    </th>
+                    <th>
+                        Time
+                    </th>
+                    <th>
+                        Days
+                    </th>
+                    <th>
+                        Sound
+                    </th>
+                    <th>
+                        Action
+                    </th>
+                </tr>
+    ";
+                $index = 0;
+                foreach ($schedules as $schedule) {
+                    echo "
+            <tr>
+                <td>$schedule[0]</td>
+                <td>$schedule[1]</td>
+                <td>$schedule[2]</td>
+                <td>$schedule[3]</td>
+                <td><span><a href=\"/schedule/view/$index\">View</a></span> <span><a href=\"/schedule/edit/$index\">Edit</a></span> <span><a href=\"/schedule/delete/$index\">Delete</a></span></td>
+
+            </tr>
+        ";
+                    $index++;
+                }
+                echo "
+        </tbody>
+        </table>
+    ";
+
+                ?>
                 <div class="my-3">
                     <button>Edit</button>
                     <button>Delete</button>

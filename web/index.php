@@ -19,14 +19,14 @@ Route::add('/schedule', function () {
 }, 'get');
 
 Route::add('/schedule/view/([0-9]*)', function ($index) {
-    Schedule::read($index);
+    View::scheduleRead($index);
 }, 'get');
 
 Route::add(
-    '/schedule/edit/([0-9]*)',
+    '/schedule/update/([0-9]*)',
     function ($index) {
         #edit
-        Schedule::update($index);
+        View::scheduleUpdate($index);
     },
     'get'
 );
