@@ -2,14 +2,14 @@
 
 class Schedule
 {
-    public static function add($schedule)
+    public static function add()
     {
-        Csv::addSchedule($schedule);
+        Csv::addSchedule();
     }
 
-    public static function edit($index, $schedule)
+    public static function edit($index)
     {
-        Csv::editSchedule($index, $schedule);
+        Csv::editSchedule($index);
     }
 
     public static function create()

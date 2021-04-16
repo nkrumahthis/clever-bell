@@ -1,4 +1,5 @@
 <?php
+include('php/View.php');
 include('php/Csv.php');
 include('php/Jingle.php');
 include('php/Route.php');
@@ -7,15 +8,11 @@ include('php/Schedule.php');
 
 // Add base route(startpage)
 Route::add('/', function () {
-    include('home.php');
+    View::home();
 });
 
-Route::add('/main', function () {
-    include('main.php');
-});
-
-Route::add('/schedule', function () {
-    echo 'Welcome schedule';
+Route::add('/schedule/create', function () {
+    View::scheduleCreate();
 }, 'get');
 
 Route::add('/schedule/view/([0-9]*)', function ($index) {
@@ -34,8 +31,7 @@ Route::add(
 Route::add(
     '/schedule/update/([0-9]*)',
     function ($index) {
-        $schedule = array($_POST["description"], $_POST["time"], $_POST["days"], $_POST["jingle"]);
-        Schedule::edit($index, $schedule);
+        Schedule::edit($index);
         echo 'Schedule editted successfully<br/><br/><a href="/"><- Back</a>';
     },
     'post'
@@ -51,8 +47,7 @@ Route::add(
 
 // Post route example
 Route::add('/schedule', function () {
-    $schedule = array($_POST["description"], $_POST["time"], $_POST["days"], $_POST["jingle"]);
-    Schedule::add($schedule);
+    Schedule::add();
     echo 'Schedule added successfully<br/><br/><a href="/"><- Back</a>';
 }, 'post');
 
@@ -72,10 +67,6 @@ Route::add(
 
 Route::add('/foo/([0-9]*)/([0-9]*)', function ($var1, $var2) {
     echo 'foo ' . $var1 . ' ' . $var2;
-});
-
-Route::add('/', function () {
-    echo 'Welcome :-)';
 });
 
 Route::run('/');

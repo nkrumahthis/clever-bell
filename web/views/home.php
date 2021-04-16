@@ -47,32 +47,8 @@
             <div class="col-md-8">
                 <h3>Schedules</h3>
                 <div class="my-3">
-                    <form action="schedule" method="post">
-                        <input type="text" name="description" placeholder="description" />
-                        <input type="text" name="time" paceholder="12:59" />
-                        <select name="days" id="days">
-                            <option value="Everyday">Everyday</option>
-                            <option value="Weekdays">Weekdays</option>
-                            <option value="Monday">Monday</option>
-                            <option value="Tuesday">Tuesday</option>
-                            <option value="Wednesday">Wednesday</option>
-                            <option value="Thursday">Thursday</option>
-                            <option value="Friday">Friday</option>
-                            <option value="Saturday">Saturday</option>
-                            <option value="Sunday">Sunday</option>
-                            <option value="Weekends">Weekends</option>
-                        </select>
-                        <select name="jingle" id="jingle">
-                            <option value="" default>choose a jingle</option>
-                            <?php
-                            foreach ($jingles as $jingle) {
-                                echo "<option value=\"" . $jingle . "\">" . $jingle . "</option>\n";
-                            }
-                            ?>
-                        </select>
-                        <input type="submit" name="Submit" value="Submit">
-                    </form>
-                    <!-- <button>New</button> -->
+
+                    <p><a href="/schedule/create" class="btn btn-primary">New</a></p>
                 </div>
                 <?php
 
@@ -107,7 +83,7 @@
                 <td>$schedule[1]</td>
                 <td>$schedule[2]</td>
                 <td>$schedule[3]</td>
-                <td><span><a href=\"/schedule/view/$index\">View</a></span> <span><a href=\"/schedule/edit/$index\">Edit</a></span> <span><a href=\"/schedule/delete/$index\">Delete</a></span></td>
+                <td><span><a href=\"/schedule/view/$index\">View</a></span> <span><a href=\"/schedule/update/$index\">Edit</a></span> <span><a href=\"/schedule/delete/$index\">Delete</a></span></td>
 
             </tr>
         ";
@@ -119,10 +95,7 @@
     ";
 
                 ?>
-                <div class="my-3">
-                    <button>Edit</button>
-                    <button>Delete</button>
-                </div>
+
 
             </div>
         </div>

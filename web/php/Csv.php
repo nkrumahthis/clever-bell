@@ -5,10 +5,14 @@ class Csv
     private static $path = "timetable.csv";
     private static $file_error = "error opening file";
 
+    private static function schedule_array()
+    {
+        return array($_POST["description"], $_POST["time"], $_POST["days"], $_POST["jingle"]);
+    }
+
     public static function addSchedule()
     {
-        $schedule = array($_POST["description"], $_POST["time"], $_POST["days"], $_POST["jingle"]);
-
+        $schedule = self::schedule_array();
         $handle = fopen(self::$path, "a") or die(self::$file_error);
         $input = $schedule[0] . "," . $schedule[1] . "," . $schedule[2] . "," . $schedule[3] . "\n";
         fwrite($handle, $input);
@@ -26,10 +30,10 @@ class Csv
         fclose($handle);
     }
 
-    public static function editSchedule($index, $schedule)
+    public static function editSchedule($index)
     {
         $schedules = self::readAllSchedules();
-        $schedules[$index] = $schedule;
+        $schedules[$index] = self::schedule_array();
         self::writeSchedules($schedules);
     }
 

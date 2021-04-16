@@ -2,6 +2,10 @@
 
 class View
 {
+    public static function home()
+    {
+        include('views/home.php');
+    }
     public static function scheduleUpdate($index)
     {
         $schedule = Csv::getSchedule($index);
@@ -12,5 +16,10 @@ class View
     {
         $schedule = Csv::getSchedule($index);
         include('views/schedule/read.php');
+    }
+
+    public static function scheduleCreate()
+    {
+        include('views/schedule/create.php');
     }
 }
