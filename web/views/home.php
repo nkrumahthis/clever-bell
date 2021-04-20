@@ -23,27 +23,6 @@
             </div>
         </div>
         <div class="row m-3">
-            <div class="col-md-4">
-                <h3>Sounds</h3>
-                <ul>
-                    <?php
-                    $jingles = Jingle::getAll();
-                    foreach ($jingles as $jingle) {
-                        echo "<li>" . $jingle . "</li>";
-                    }
-                    if (sizeof($jingles) == 0) {
-                        echo "no sounds yet.";
-                    }
-                    ?>
-                </ul>
-
-                <form action="jingle" enctype="multipart/form-data" method="post">
-                    <input type="file" name="jingle" accept="audio/*">
-                    <input type="submit" name="Submit" value="Submit">
-                </form>
-
-                <button>Upload Sound</button>
-            </div>
             <div class="col-md-8">
                 <h3>Schedules</h3>
                 <div class="my-3">
