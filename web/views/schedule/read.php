@@ -13,7 +13,7 @@
 <body>
     <div class="wrapper">
         <div class="container-fluid">
-            <div class="row">
+            <div class="row m-3">
                 <div class="col-md-12">
                     <h1 class="mt-5 mb-3">View Schedule</h1>
                     <div class="form-group">

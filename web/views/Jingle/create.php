@@ -14,7 +14,7 @@
 <body>
     <div class="wrapper">
         <div class="container-fluid">
-            <div class="row">
+            <div class="row m-3">
                 <div class="col-md-12">
                     <h2 class="mt-5">Upload Jingle</h2>
                     <p>Please choose a file to upload</p>

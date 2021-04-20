@@ -13,7 +13,7 @@
 <body>
     <div class="wrapper">
         <div class="container-fluid">
-            <div class="row">
+            <div class="row m-3">
                 <div class="col-md-12">
                     <h2 class="mt-5">Create Schedule</h2>
                     <p>Please edit the input values and submit to create the schedule.</p>
