@@ -38,6 +38,16 @@ Route::add(
 );
 
 Route::add(
+    '/schedule/duplicate/([0-9]*)',
+    function ($index) {
+        #edit
+        Schedule::duplicate($index);
+        View::home();
+    },
+    'get'
+);
+
+Route::add(
     '/schedule/update/([0-9]*)',
     function ($index) {
         Schedule::edit($index);

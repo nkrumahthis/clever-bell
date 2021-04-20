@@ -19,6 +19,14 @@ class Csv
         fclose($handle);
     }
 
+    public static function appendSchedule($schedule)
+    {
+        $handle = fopen(self::$path, "a") or die(self::$file_error);
+        $input = $schedule[0] . "," . $schedule[1] . "," . $schedule[2] . "," . $schedule[3] . "\n";
+        fwrite($handle, $input);
+        fclose($handle);
+    }
+
     public static function writeSchedules($schedules)
     {
         $handle = fopen(self::$path, "w") or die(self::$file_error);
@@ -35,6 +43,12 @@ class Csv
         $schedules = self::readAllSchedules();
         $schedules[$index] = self::schedule_array();
         self::writeSchedules($schedules);
+    }
+
+    public static function duplicateSchedule($index)
+    {
+        $schedule = self::getSchedule($index);
+        self::appendSchedule($schedule);
     }
 
     public static function deleteSchedule($index)

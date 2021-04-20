@@ -23,4 +23,9 @@ class Schedule
         Csv::deleteSchedule($index);
         // include('views/schedule/delete.php');
     }
+
+    public static function duplicate($index)
+    {
+        Csv::duplicateSchedule($index);
+    }
 }
