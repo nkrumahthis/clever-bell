@@ -22,4 +22,9 @@ class View
     {
         include('views/schedule/create.php');
     }
+
+    public static function jingleRead()
+    {
+        include('views/jingle/read.php');
+    }
 }
