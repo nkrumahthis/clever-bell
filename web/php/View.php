@@ -12,7 +12,7 @@ class View
         include('views/schedule/update.php');
     }
 
-    public static function scheduleRead($index)
+    public static function readSchedule($index)
     {
         $schedule = Csv::getSchedule($index);
         include('views/schedule/read.php');
